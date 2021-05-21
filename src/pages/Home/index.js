@@ -39,10 +39,14 @@ export default function Home({navigation}) {
     launchCamera(
       {
         title: 'Escolha a imagem',
+        maxHeight: 600,
+        maxWidth: 800,
       },
       res => {
         if (!res.didCancel) {
-          console.warn(navigation != null);
+          navigation.navigate('Classificar', {
+            image: {uri: res.uri, base64: res.base64},
+          });
         }
       },
     );

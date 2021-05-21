@@ -21,7 +21,15 @@ const AppStack: () => React$Node = () => {
           headerTitleStyle: {fontSize: 24},
         }}
       />
-      <Stack.Screen name="Classificar" component={Classificar} />
+      <Stack.Screen
+        name="Classificar"
+        component={Classificar}
+        options={{
+          headerTitle: 'Classificar',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontSize: 24},
+        }}
+      />
     </Stack.Navigator>
   );
 };
