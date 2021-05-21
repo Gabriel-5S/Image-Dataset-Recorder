@@ -5,6 +5,8 @@ import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
 import {Alert, View, Image, Text, TouchableOpacity} from 'react-native';
 
+import {launchCamera} from 'react-native-image-picker';
+
 export default function Home({navigation}) {
   const {user, logout} = useContext(AuthContext);
 
@@ -33,11 +35,26 @@ export default function Home({navigation}) {
     fetchUser();
   });
 
+  const pickImage = () => {
+    launchCamera(
+      {
+        title: 'Escolha a imagem',
+      },
+      res => {
+        if (!res.didCancel) {
+          console.warn(navigation != null);
+        }
+      },
+    );
+  };
+
   return (
     <View style={styles.container1}>
       <View style={styles.containerText}>
         <Text style={styles.header}>Olá, {name}!</Text>
-        <Text style={styles.subTitle}>O que deseja fazer?</Text>
+        <TouchableOpacity style={styles.button} onPress={pickImage}>
+          <Text style={styles.buttonText}>Tirar foto</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={logout}>
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
