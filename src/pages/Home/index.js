@@ -39,8 +39,8 @@ export default function Home({navigation}) {
     launchCamera(
       {
         title: 'Escolha a imagem',
-        maxHeight: 600,
-        maxWidth: 800,
+        maxHeight: 450,
+        maxWidth: 600,
       },
       res => {
         if (!res.didCancel) {

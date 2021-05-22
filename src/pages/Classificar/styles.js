@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: 20,
+    marginLeft: 25,
     width: Dimensions.get('window').width,
     fontSize: 24,
     color: '#363636',
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     width: '90%',
     height: (Dimensions.get('window').width * 3) / 4,
     backgroundColor: '#E9F5F5',
-    marginTop: 20,
     justifyContent: 'center',
   },
   image: {
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
+    padding: 10,
     backgroundColor: '#E9F5F5',
     alignItems: 'center',
     justifyContent: 'space-between',
