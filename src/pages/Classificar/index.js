@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import styles from './styles';
-import {View, Image, Text, TouchableOpacity, FlatList} from 'react-native';
+import { View, Image, Text, TouchableOpacity, FlatList, SafeAreaView } from "react-native";
 import categories from './categories';
 
 export default function Classificar({route, navigation}) {
@@ -18,11 +18,13 @@ export default function Classificar({route, navigation}) {
   };
 
   return (
-    <View style={styles.container1}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Classificar a imagem:</Text>
+
       <View style={styles.imageContainer}>
         <Image source={image} style={styles.image} />
       </View>
+
       <View style={styles.buttonsContainer}>
         <FlatList
           data={categories}
@@ -31,9 +33,9 @@ export default function Classificar({route, navigation}) {
         />
       </View>
 
-      <TouchableOpacity style={styles.button2} onPress={console.warn('Salvo!')}>
+      <TouchableOpacity style={styles.buttonSave} onPress={console.warn('Salvo!')}>
         <Text style={styles.buttonText}>Salvar</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }

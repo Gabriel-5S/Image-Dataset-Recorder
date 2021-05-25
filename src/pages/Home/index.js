@@ -3,7 +3,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
-import {Alert, View, Image, Text, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Image, Text, TouchableOpacity} from 'react-native';
 
 import {launchCamera} from 'react-native-image-picker';
 
@@ -53,7 +53,7 @@ export default function Home({navigation}) {
   };
 
   return (
-    <View style={styles.container1}>
+    <SafeAreaView style={styles.container1}>
       <View style={styles.containerText}>
         <Text style={styles.header}>Olá, {name}!</Text>
         <TouchableOpacity style={styles.button} onPress={pickImage}>
@@ -63,6 +63,6 @@ export default function Home({navigation}) {
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

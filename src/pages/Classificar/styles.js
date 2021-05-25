@@ -1,7 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container1: {
+  container: {
     flex: 1,
     backgroundColor: '#E9F5F5',
     alignItems: 'center',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  button2: {
+  buttonSave: {
     borderRadius: 20,
     width: 300,
     height: 50,
