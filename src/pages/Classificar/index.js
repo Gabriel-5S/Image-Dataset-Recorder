@@ -1,10 +1,19 @@
 import "react-native-gesture-handler";
 import React from "react";
 import styles from "./styles";
-import { View, Image, Text, TouchableOpacity } from "react-native";
+import { View, Image, Text, TouchableOpacity, FlatList } from "react-native";
+import categories from "./categories";
 
 export default function Classificar({ route, navigation }) {
   const { image } = route.params;
+
+  const renderButton = ({ item }) => {
+    return (
+      <TouchableOpacity style={styles.button} onPress={console.warn(item.category)}>
+        <Text style={styles.buttonText}>{item.category}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container1}>
@@ -13,24 +22,14 @@ export default function Classificar({ route, navigation }) {
         <Image source={image} style={styles.image} />
       </View>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={console.warn("Positivo")}>
-          <Text style={styles.buttonText}>Positivo</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button} onPress={console.warn("Negativo")}>
-          <Text style={styles.buttonText}>Negativo</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button} onPress={console.warn("Label 3")}>
-          <Text style={styles.buttonText}>Label 3</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button} onPress={console.warn("Label 4")}>
-          <Text style={styles.buttonText}>Label 4</Text>
-        </TouchableOpacity>
+        <FlatList
+          data={categories}
+          keyExtractor={i => categories.id}
+          renderItem={renderButton}
+        />
       </View>
 
-      <TouchableOpacity style={styles.button2} onPress={console.warn("Salvo!")}>
+      <TouchableOpacity style={styles.button2} onPress={console.warn('Salvo!')}>
         <Text style={styles.buttonText}>Salvar</Text>
       </TouchableOpacity>
     </View>
