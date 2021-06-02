@@ -1,19 +1,21 @@
-import 'react-native-gesture-handler';
-import React from 'react';
-import styles from './styles';
+import "react-native-gesture-handler";
+import React from "react";
+import styles from "./styles";
 import { View, Image, Text, TouchableOpacity, FlatList, SafeAreaView } from "react-native";
-import categories from './categories';
+import categories from "./categories";
 
-export default function Classificar({route, navigation}) {
-  const {image} = route.params;
+export default function Classificar({ route, navigation }) {
+  const { image } = route.params;
 
-  const renderButton = ({item}) => {
+  const renderButton = ({ item }) => {
     return (
-      <TouchableOpacity
-        style={styles.button}
-        onPress={console.warn(item.category)}>
-        <Text style={styles.buttonText}>{item.category}</Text>
-      </TouchableOpacity>
+      <View style={{ padding: 5 }}>
+        <TouchableOpacity
+          style={[styles.button, {backgroundColor: item.color}]}
+          onPress={console.warn(item.category)}>
+          <Text style={styles.buttonText}>{item.category}</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -33,9 +35,11 @@ export default function Classificar({route, navigation}) {
         />
       </View>
 
-      <TouchableOpacity style={styles.buttonSave} onPress={console.warn('Salvo!')}>
-        <Text style={styles.buttonText}>Salvar</Text>
-      </TouchableOpacity>
+      <View style={{ marginBottom: 30 }}>
+        <TouchableOpacity style={styles.buttonSave} onPress={console.warn("Salvo!")}>
+          <Text style={styles.buttonText}>Salvar</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
