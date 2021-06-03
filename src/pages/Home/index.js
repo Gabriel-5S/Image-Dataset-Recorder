@@ -4,6 +4,7 @@ import firestore from '@react-native-firebase/firestore';
 import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
 import {SafeAreaView, View, Image, Text, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import {launchCamera} from 'react-native-image-picker';
 
@@ -57,7 +58,7 @@ export default function Home({navigation}) {
       <View style={styles.containerText}>
         <Text style={styles.header}>Olá, {name}!</Text>
         <TouchableOpacity style={styles.button} onPress={pickImage}>
-          <Text style={styles.buttonText}>Tirar foto</Text>
+          <Icon name="camera" size={25} color={'#FFFFFF'} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={logout}>
           <Text style={styles.buttonText}>Logout</Text>

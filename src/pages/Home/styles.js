@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 30,
-    borderRadius: 20,
-    width: 200,
-    height: 75,
+    borderRadius: 40,
+    width: 80,
+    height: 80,
     backgroundColor: '#2F4D90',
     paddingHorizontal: 20,
     justifyContent: 'center',
