@@ -28,9 +28,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  containerImagem: {
-    backgroundColor: '#C4C4C4',
-  },
   button: {
     margin: 30,
     borderRadius: 40,
@@ -38,6 +35,11 @@ const styles = StyleSheet.create({
     height: 80,
     backgroundColor: '#2F4D90',
     paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
