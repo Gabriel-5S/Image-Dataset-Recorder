@@ -17,17 +17,19 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   imageContainer: {
-    // width: '90%',
-    // height: (Dimensions.get('window').width * 3) / 4,
     flex: 1,
+    // width: '100%',
+    // height: (Dimensions.get('window').width * 3) / 4,
+    height: 450,
+    marginTop: 50,
     padding: 35,
     backgroundColor: '#E9F5F5',
     justifyContent: 'center',
   },
   image: {
     width: Dimensions.get('window').width,
-    // height: (Dimensions.get('window').width * 3) / 4,
-    height: 240,
+    height: (Dimensions.get('window').width * 3) / 4,
+    // height: 450,
     resizeMode: 'center',
   },
   button: {
@@ -53,10 +55,10 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
+    marginTop: 35,
     padding: 10,
     backgroundColor: '#E9F5F5',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
 });
 

@@ -6,6 +6,7 @@ import { AuthContext } from "../../navigation/AuthProvider";
 import { SafeAreaView, View, Image, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/dist/FontAwesome";
 
+
 import { launchCamera } from "react-native-image-picker";
 
 export default function Home({ navigation }) {
@@ -40,7 +41,8 @@ export default function Home({ navigation }) {
     launchCamera(
       {
         title: "Escolha a imagem",
-        maxHeight: 450,
+        // maxHeight: 450,
+        maxHeight: 900,
         maxWidth: 600,
       },
       res => {
