@@ -57,6 +57,9 @@ export default function Home({ navigation }) {
     <SafeAreaView style={styles.container1}>
       <View style={styles.containerText}>
         <Text style={styles.header}>Olá, {name}!</Text>
+        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+          <Icon name="sign-out" size={28} color={"#2F4D90"} />
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={pickImage}>
