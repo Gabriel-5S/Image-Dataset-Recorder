@@ -1,6 +1,9 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+  },
   container1: {
     flex: 1,
     backgroundColor: '#C4C4C4',
@@ -10,7 +13,6 @@ const styles = StyleSheet.create({
   containerText: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // padding: 20,
     marginTop: 10,
     marginBottom: 70,
     marginLeft: 25,
