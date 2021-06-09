@@ -1,6 +1,9 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+  },
   container1: {
     flex: 1,
     backgroundColor: '#C4C4C4',
@@ -8,8 +11,11 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   containerText: {
-    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
     marginBottom: 70,
+    marginLeft: 25,
   },
   header: {
     marginTop: 20,
@@ -28,16 +34,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  containerImagem: {
-    backgroundColor: '#C4C4C4',
-  },
   button: {
     margin: 30,
-    borderRadius: 20,
-    width: 200,
-    height: 75,
+    borderRadius: 40,
+    width: 80,
+    height: 80,
     backgroundColor: '#2F4D90',
     paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoutButton: {
+    margin: 15,
+    borderRadius: 25,
+    width: 50,
+    height: 50,
+    backgroundColor: '#C4C4C4',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
