@@ -1,27 +1,28 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import {Alert} from 'react-native';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
 
   return (
     <AuthContext.Provider
       value={{
         user,
         setUser,
-        name,
-        setName,
-        email,
-        setEmail,
-        password,
-        setPassword,
+        // name,
+        // setName,
+        // email,
+        // setEmail,
+        // password,
+        // setPassword,
         login: async (email, password) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
@@ -29,7 +30,7 @@ export const AuthProvider = ({children}) => {
             console.log(e);
           }
         },
-        register: async (email, password) => {
+        register: async (name, email, password) => {
           try {
             await auth()
               .createUserWithEmailAndPassword(email, password)
@@ -55,6 +56,26 @@ export const AuthProvider = ({children}) => {
               //we need to catch the whole sign up process if it fails too.
               .catch(error => {
                 console.log('Something went wrong with sign up: ', error);
+                console.log(error.code);
+                if (error.code === 'auth/email-already-in-use') {
+                  Alert.alert(
+                    'Ops!',
+                    'Esse email já está sendo usado. Por favor, utilize outro email.',
+                    [{text: 'OK', onPress: () => {}}],
+                  );
+                } else if (error.code === 'auth/invalid-email') {
+                  Alert.alert(
+                    'Ops!',
+                    'Esse email é inválido! Por favor, tente novamente.',
+                    [{text: 'OK', onPress: () => {}}],
+                  );
+                } else {
+                  Alert.alert(
+                    'Ops!',
+                    'Ocorreu um erro! Por favor, tente novamente',
+                    [{text: 'OK', onPress: () => {}}],
+                  );
+                }
               });
           } catch (e) {
             console.log(e);

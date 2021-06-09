@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
+import {Formik} from 'formik';
+import Yup from 'yup';
 
 export default function Login({navigation}) {
   const {email, setEmail, password, setPassword, login} =
