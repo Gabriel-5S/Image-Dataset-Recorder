@@ -27,9 +27,7 @@ const reviewSchema = yup.object({
 });
 
 export default function SignUp({navigation}) {
-  // const {name, setName, email, setEmail, password, setPassword, register} =
-  //   useContext(AuthContext);
-  const {register, errorSignUp} = useContext(AuthContext);
+  const {register} = useContext(AuthContext);
 
   return (
     <View style={styles.container1}>
@@ -40,13 +38,7 @@ export default function SignUp({navigation}) {
           validationSchema={reviewSchema}
           onSubmit={(values, actions) => {
             actions.resetForm();
-            register(values.name, values.email, values.password)
-              .then()
-              // .then(resp => console.log('sucesso:', resp))
-              .catch(err => {
-                // setErrors({message: err.message});
-                console.log('erro register:', err);
-              });
+            register(values.name, values.email, values.password);
           }}>
           {props => (
             <View style={styles.container2}>
@@ -86,7 +78,6 @@ export default function SignUp({navigation}) {
 
               <TouchableOpacity
                 style={styles.signUpButton}
-                // onPress={() => register(name, email, password)}>
                 onPress={props.handleSubmit}>
                 <Text style={styles.signUpButtonText}>Criar conta</Text>
               </TouchableOpacity>
