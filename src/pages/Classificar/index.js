@@ -28,7 +28,12 @@ export default function Classificar({route, navigation}) {
   // };
 
   const radioButtonsData = categories.map(function (item) {
-    return { id: item.id, color: item.color, label: item.category, value: item.category };
+    return {
+      id: item.id,
+      color: item.color,
+      label: item.category,
+      value: item.category,
+    };
   });
 
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
@@ -46,10 +51,7 @@ export default function Classificar({route, navigation}) {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <RadioGroup
-          radioButtons={radioButtons}
-          onPress={onPressRadioButton}
-        />
+        <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
 
         {/*<FlatList*/}
         {/*  data={categories}*/}
