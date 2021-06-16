@@ -20,11 +20,15 @@ export default function Home({navigation}) {
         .collection('users')
         .doc(user.uid)
         .onSnapshot(documentSnapshot => {
-          if (!documentSnapshot.exists) {
-            console.log('No such document!');
-          } else {
-            const {name} = documentSnapshot.data();
-            setName(name);
+          try {
+            if (!documentSnapshot.exists) {
+              console.log('No such document!');
+            } else {
+              const {name} = documentSnapshot.data();
+              setName(name);
+            }
+          } catch (e) {
+            console.log(e);
           }
         });
       return () => subscriber();
