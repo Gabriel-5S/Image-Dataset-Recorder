@@ -26,7 +26,12 @@ const styles = StyleSheet.create({
     borderColor: '#EEE',
     borderWidth: 1,
     paddingHorizontal: 20,
-    marginBottom: 5,
+  },
+  errorText: {
+    fontSize: 14,
+    marginBottom: 10,
+    alignSelf: 'flex-start',
+    color: '#f10303',
   },
   loginButton: {
     borderRadius: 20,

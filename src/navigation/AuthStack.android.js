@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Login from '../pages/Login/index';
 import SignUp from '../pages/SignUp/index';
+import ResetPassword from '../pages/ResetPassword/index';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,16 @@ const AuthStack: () => React$Node = () => {
         options={{
           headerTitle: 'SignUp',
           headerTitleAlign: 'center',
+          headerTitleStyle: {fontSize: 24},
+        }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{
+          headerTitle: 'Esqueceu sua senha?',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontSize: 24},
         }}
       />
     </Stack.Navigator>
