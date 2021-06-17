@@ -45,14 +45,12 @@ export default function Home({navigation}) {
     launchCamera(
       {
         title: 'Escolha a imagem',
-        maxHeight: 900,
-        maxWidth: 600,
         saveToPhotos: false,
       },
       res => {
         if (!res.didCancel) {
           navigation.navigate('Classificar', {
-            image: {uri: res.uri, fileName: res.fileName},
+            image: {uri: res.uri, fileName: res.fileName, height: res.height, width: res.width},
             name: name,
           });
         }

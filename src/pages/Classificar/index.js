@@ -20,11 +20,14 @@ export default function Classificar({route, navigation}) {
   const {image, name} = route.params;
   const [cropURI, setCropURI] = useState();
 
+  //Ordenada para corte quadrado centralizado na imagem original
+  const cropY = (image.height - image.width) * 0.5;
+
   //Dados para o corte da imagem
   const cropData = {
     //TODO - Os valores de x e y devem ser reajustados com testes na caixa
-    offset: {x: 0, y: 0},
-    size: {width: 450, height: 450},
+    offset: {x: 0, y: cropY},
+    size: {width: image.width, height: image.width},
   };
   //Corta a imagem e retorna a uri da imagem cortada em cache
   const cropImage = async () => {
@@ -93,13 +96,19 @@ export default function Classificar({route, navigation}) {
       });
       task.then(() => {
         Alert.alert('Sucesso!', 'Upload feito com sucesso!', [
-          {text: 'OK', onPress: () => {}},
+          {
+            text: 'OK',
+            onPress: () => {},
+          },
         ]);
         navigation.navigate('Home');
       });
     } else {
       Alert.alert('', 'Selecione uma das classes!', [
-        {text: 'OK', onPress: () => {}},
+        {
+          text: 'OK',
+          onPress: () => {},
+        },
       ]);
     }
   };
@@ -116,12 +125,7 @@ export default function Classificar({route, navigation}) {
         <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
       </View>
 
-      <View
-        style={{
-          marginBottom: 30,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.uploadContainer}>
         {/*Verifica se está fazendo o upload e renderiza ou o botão ou o ActivityIndicator*/}
         {uploading ? (
           <TouchableOpacity style={styles.buttonSave} onPress={uploadImage}>
