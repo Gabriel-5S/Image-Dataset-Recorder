@@ -16,10 +16,6 @@ import * as yup from 'yup';
 import firestore from '@react-native-firebase/firestore';
 
 const reviewSchema = yup.object({
-  password: yup
-    .string()
-    .min(6, 'A senha deve ter no mínimo 6 caracteres')
-    .required('Preencha o campo de senha'),
   email: yup
     .string()
     .email('Digite um e-mail válido')
@@ -27,18 +23,20 @@ const reviewSchema = yup.object({
 });
 
 export default function Login({navigation}) {
-  const {login} = useContext(AuthContext);
+  const {resetPassword} = useContext(AuthContext);
 
   return (
     <View style={styles.container1}>
       <ScrollView>
-        <Text style={styles.header}>Bem-vindo!</Text>
+        <Text style={styles.header}>
+          Digite seu email, para enviarmos um link de redefinição de senha.
+        </Text>
         <Formik
-          initialValues={{email: '', password: ''}}
+          initialValues={{email: ''}}
           validationSchema={reviewSchema}
           onSubmit={(values, actions) => {
             actions.resetForm();
-            login(values.email, values.password);
+            resetPassword(values.email);
           }}>
           {props => (
             <View style={styles.container2}>
@@ -53,36 +51,10 @@ export default function Login({navigation}) {
                 {props.touched.email && props.errors.email}
               </Text>
 
-              <TextInput
-                style={styles.input}
-                placeholder="Senha"
-                secureTextEntry={true}
-                onChangeText={props.handleChange('password')}
-                value={props.values.password}
-                onBlur={props.handleBlur('password')}
-              />
-              <Text style={styles.errorText}>
-                {props.touched.password && props.errors.password}
-              </Text>
-
-              <View style={styles.buttonTextContainer}>
-                <TouchableOpacity
-                  style={styles.signupButton}
-                  onPress={() => navigation.navigate('SignUp')}>
-                  <Text style={styles.signupButtonText}>Criar conta</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.forgotButton}
-                  onPress={() => navigation.navigate('ResetPassword')}>
-                  <Text style={styles.forgotButtonText}>Esqueceu a senha?</Text>
-                </TouchableOpacity>
-              </View>
-
               <TouchableOpacity
                 style={styles.loginButton}
                 onPress={props.handleSubmit}>
-                <Text style={styles.loginButtonText}>Entrar</Text>
+                <Text style={styles.loginButtonText}>Enviar email</Text>
               </TouchableOpacity>
             </View>
           )}

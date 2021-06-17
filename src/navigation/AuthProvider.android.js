@@ -92,6 +92,31 @@ export const AuthProvider = ({children}) => {
             console.log(e);
           }
         },
+        resetPassword: async email => {
+          try {
+            await auth().sendPasswordResetEmail(email);
+          } catch (error) {
+            if (error.code === 'auth/user-not-found') {
+              Alert.alert(
+                'Ops!',
+                'Não há usuário correspondente a esse email.',
+                [{text: 'OK', onPress: () => {}}],
+              );
+            } else if (error.code === 'auth/invalid-email') {
+              Alert.alert(
+                'Ops!',
+                'Esse email é inválido! Por favor, tente novamente.',
+                [{text: 'OK', onPress: () => {}}],
+              );
+            } else {
+              Alert.alert(
+                'Ops!',
+                'Ocorreu um erro! Por favor, tente novamente',
+                [{text: 'OK', onPress: () => {}}],
+              );
+            }
+          }
+        },
       }}>
       {children}
     </AuthContext.Provider>
