@@ -53,6 +53,7 @@ export default function Home({navigation}) {
         if (!res.didCancel) {
           navigation.navigate('Classificar', {
             image: {uri: res.uri, fileName: res.fileName},
+            name: name,
           });
         }
       },

@@ -17,7 +17,7 @@ import ImageEditor from '@react-native-community/image-editor';
 import {ActivityIndicator} from 'react-native';
 
 export default function Classificar({route, navigation}) {
-  const {image} = route.params;
+  const {image, name} = route.params;
   const [cropURI, setCropURI] = useState();
 
   //Dados para o corte da imagem
@@ -74,8 +74,16 @@ export default function Classificar({route, navigation}) {
   const uploadImage = async () => {
     if (selectedValue) {
       setUploading(false);
+
+      const metadata = {
+        customMetadata: {
+          classe: selectedValue,
+          autor: name,
+        },
+      };
+
       const reference = storage().ref(selectedValue + '/' + image.fileName);
-      const task = reference.putFile(cropURI);
+      const task = reference.putFile(cropURI, metadata);
 
       task.on('state_changed', taskSnapshot => {
         setUploadTaskSnapshot(taskSnapshot);
