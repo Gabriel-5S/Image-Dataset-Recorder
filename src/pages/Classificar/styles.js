@@ -16,22 +16,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'flex-start',
   },
-  imageContainer: {
-    flex: 1,
-    // width: '100%',
-    // height: (Dimensions.get('window').width * 3) / 4,
-    height: 450,
-    marginTop: 50,
-    padding: 35,
-    backgroundColor: '#E9F5F5',
-    justifyContent: 'center',
-  },
-  image: {
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').width * 3) / 4,
-    // height: 450,
-    resizeMode: 'center',
-  },
   button: {
     borderRadius: 20,
     width: 200,
@@ -55,10 +39,35 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
-    marginTop: 35,
-    padding: 10,
+    marginTop: 40,
+    // padding: 10,
     backgroundColor: '#E9F5F5',
     alignItems: 'center',
+  },
+  imageContainer: {
+    flex: 1,
+    width: 250,
+    // height: (Dimensions.get('window').width * 3) / 4,
+    height: 250,
+    marginTop: 50,
+    // padding: 15,
+    backgroundColor: '#E9F5F5',
+    justifyContent: 'center',
+  },
+  image: {
+    // width: Dimensions.get('window').width,
+    width: 250,
+    // height: (Dimensions.get('window').width * 3) / 4,
+    height: 250,
+    borderRadius: 15,
+    resizeMode: 'contain',
+  },
+  statusText: {
+    fontSize: 15,
+    color: '#2F4D90',
+  },
+  radioList: {
+    fontSize: 50,
   },
 });
 

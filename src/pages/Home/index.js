@@ -47,11 +47,12 @@ export default function Home({navigation}) {
         title: 'Escolha a imagem',
         maxHeight: 900,
         maxWidth: 600,
+        saveToPhotos: false,
       },
       res => {
         if (!res.didCancel) {
           navigation.navigate('Classificar', {
-            image: {uri: res.uri, base64: res.base64},
+            image: {uri: res.uri, fileName: res.fileName},
           });
         }
       },
