@@ -23,15 +23,28 @@ export default function Classificar({route, navigation}) {
   //Ordenada para corte quadrado centralizado na imagem original
   const cropY = (image.height - image.width) * 0.5;
 
-  //Dados para o corte da imagem
-  const cropData = {
-    //TODO - Os valores de x e y devem ser reajustados com testes na caixa
-    offset: {x: 0, y: cropY},
-    size: {width: image.width, height: image.width},
-  };
+  //Dados para o corte da imagem de acordo com dimensões do sensor
+  function cropDataVerifier() {
+    if (image.width < image.height) {
+      const cropData = {
+        //TODO - Os valores de x e y devem ser reajustados com testes na caixa
+        offset: {x: 0, y: cropY},
+        size: {width: image.width, height: image.width},
+      };
+      return cropData;
+    } else {
+      const cropData = {
+        //TODO - Os valores de x e y devem ser reajustados com testes na caixa
+        offset: {x: -cropY, y: 0},
+        size: {width: image.height, height: image.height},
+      };
+      return cropData;
+    }
+  }
+
   //Corta a imagem e retorna a uri da imagem cortada em cache
   const cropImage = async () => {
-    await ImageEditor.cropImage(image.uri, cropData)
+    await ImageEditor.cropImage(image.uri, cropDataVerifier())
       .then(cropUri => {
         setCropURI(cropUri);
       })

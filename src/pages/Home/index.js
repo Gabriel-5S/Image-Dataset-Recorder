@@ -50,7 +50,12 @@ export default function Home({navigation}) {
       res => {
         if (!res.didCancel) {
           navigation.navigate('Classificar', {
-            image: {uri: res.uri, fileName: res.fileName, height: res.height, width: res.width},
+            image: {
+              uri: res.uri,
+              fileName: res.fileName,
+              height: res.height,
+              width: res.width,
+            },
             name: name,
           });
         }
