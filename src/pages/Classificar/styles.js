@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E9F5F5',
+    backgroundColor: '#C4C4C4',
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
@@ -29,29 +29,24 @@ const styles = StyleSheet.create({
   },
   buttonSave: {
     borderRadius: 20,
-    width: 300,
-    height: 50,
+    width: windowWidth * 0.8,
+    height: windowWidth * 0.8 * 0.15,
     backgroundColor: '#2F4D90',
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonText: {
     color: '#FFF',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   buttonsContainer: {
-    // flex: 1,
     marginTop: 80,
-    // padding: 10,
-    backgroundColor: '#E9F5F5',
     alignItems: 'center',
   },
   imageContainer: {
     flex: 1,
     marginTop: 80,
-    // padding: 15,
-    backgroundColor: '#E9F5F5',
     justifyContent: 'center',
   },
   image: {

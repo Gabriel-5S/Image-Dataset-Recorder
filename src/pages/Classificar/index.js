@@ -64,7 +64,9 @@ export default function Classificar({route, navigation}) {
       id: item.id,
       color: item.color,
       label: item.category,
+      labelStyle: {fontSize: 18},
       value: item.category,
+      size: 35,
     };
   });
 
@@ -135,7 +137,11 @@ export default function Classificar({route, navigation}) {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
+        <RadioGroup
+          style={{fontSize: 50}}
+          radioButtons={radioButtons}
+          onPress={onPressRadioButton}
+        />
       </View>
 
       <View style={styles.uploadContainer}>
