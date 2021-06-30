@@ -17,18 +17,34 @@ import ImageEditor from '@react-native-community/image-editor';
 import {ActivityIndicator} from 'react-native';
 
 export default function Classificar({route, navigation}) {
-  const {image} = route.params;
+  const {image, name} = route.params;
   const [cropURI, setCropURI] = useState();
 
-  //Dados para o corte da imagem
-  const cropData = {
-    //TODO - Os valores de x e y devem ser reajustados com testes na caixa
-    offset: {x: 0, y: 0},
-    size: {width: 450, height: 450},
-  };
+  //Ordenada para corte quadrado centralizado na imagem original
+  const cropY = (image.height - image.width) * 0.5;
+
+  //Dados para o corte da imagem de acordo com dimensões do sensor
+  function cropDataVerifier() {
+    if (image.width < image.height) {
+      const cropData = {
+        //TODO - Os valores de x e y devem ser reajustados com testes na caixa
+        offset: {x: 0, y: cropY},
+        size: {width: image.width, height: image.width},
+      };
+      return cropData;
+    } else {
+      const cropData = {
+        //TODO - Os valores de x e y devem ser reajustados com testes na caixa
+        offset: {x: -cropY, y: 0},
+        size: {width: image.height, height: image.height},
+      };
+      return cropData;
+    }
+  }
+
   //Corta a imagem e retorna a uri da imagem cortada em cache
   const cropImage = async () => {
-    await ImageEditor.cropImage(image.uri, cropData)
+    await ImageEditor.cropImage(image.uri, cropDataVerifier())
       .then(cropUri => {
         setCropURI(cropUri);
       })
@@ -48,7 +64,9 @@ export default function Classificar({route, navigation}) {
       id: item.id,
       color: item.color,
       label: item.category,
+      labelStyle: {fontSize: 18},
       value: item.category,
+      size: 35,
     };
   });
 
@@ -74,8 +92,16 @@ export default function Classificar({route, navigation}) {
   const uploadImage = async () => {
     if (selectedValue) {
       setUploading(false);
+
+      const metadata = {
+        customMetadata: {
+          classe: selectedValue,
+          autor: name,
+        },
+      };
+
       const reference = storage().ref(selectedValue + '/' + image.fileName);
-      const task = reference.putFile(cropURI);
+      const task = reference.putFile(cropURI, metadata);
 
       task.on('state_changed', taskSnapshot => {
         setUploadTaskSnapshot(taskSnapshot);
@@ -85,13 +111,19 @@ export default function Classificar({route, navigation}) {
       });
       task.then(() => {
         Alert.alert('Sucesso!', 'Upload feito com sucesso!', [
-          {text: 'OK', onPress: () => {}},
+          {
+            text: 'OK',
+            onPress: () => {},
+          },
         ]);
         navigation.navigate('Home');
       });
     } else {
       Alert.alert('', 'Selecione uma das classes!', [
-        {text: 'OK', onPress: () => {}},
+        {
+          text: 'OK',
+          onPress: () => {},
+        },
       ]);
     }
   };
@@ -105,15 +137,14 @@ export default function Classificar({route, navigation}) {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
+        <RadioGroup
+          style={{fontSize: 50}}
+          radioButtons={radioButtons}
+          onPress={onPressRadioButton}
+        />
       </View>
 
-      <View
-        style={{
-          marginBottom: 30,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.uploadContainer}>
         {/*Verifica se está fazendo o upload e renderiza ou o botão ou o ActivityIndicator*/}
         {uploading ? (
           <TouchableOpacity style={styles.buttonSave} onPress={uploadImage}>

@@ -45,6 +45,7 @@ export default function Login({navigation}) {
               <TextInput
                 style={styles.input}
                 placeholder="E-mail"
+                autoCapitalize="none"
                 onChangeText={props.handleChange('email')}
                 value={props.values.email}
                 onBlur={props.handleBlur('email')}
@@ -57,6 +58,7 @@ export default function Login({navigation}) {
                 style={styles.input}
                 placeholder="Senha"
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={props.handleChange('password')}
                 value={props.values.password}
                 onBlur={props.handleBlur('password')}

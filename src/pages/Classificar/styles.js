@@ -1,9 +1,12 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E9F5F5',
+    backgroundColor: '#C4C4C4',
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
@@ -26,39 +29,29 @@ const styles = StyleSheet.create({
   },
   buttonSave: {
     borderRadius: 20,
-    width: 300,
-    height: 50,
+    width: windowWidth * 0.8,
+    height: windowWidth * 0.8 * 0.15,
     backgroundColor: '#2F4D90',
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonText: {
     color: '#FFF',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   buttonsContainer: {
-    flex: 1,
-    marginTop: 40,
-    // padding: 10,
-    backgroundColor: '#E9F5F5',
+    marginTop: 80,
     alignItems: 'center',
   },
   imageContainer: {
     flex: 1,
-    width: 250,
-    // height: (Dimensions.get('window').width * 3) / 4,
-    height: 250,
-    marginTop: 50,
-    // padding: 15,
-    backgroundColor: '#E9F5F5',
+    marginTop: 80,
     justifyContent: 'center',
   },
   image: {
-    // width: Dimensions.get('window').width,
-    width: 250,
-    // height: (Dimensions.get('window').width * 3) / 4,
-    height: 250,
+    width: windowWidth * 0.7,
+    height: windowWidth * 0.7,
     borderRadius: 15,
     resizeMode: 'contain',
   },
@@ -66,8 +59,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#2F4D90',
   },
-  radioList: {
-    fontSize: 50,
+  uploadContainer: {
+    flex: 1,
+    // marginBottom: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
