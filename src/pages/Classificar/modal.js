@@ -27,7 +27,7 @@ const ModalInput = ({
         <TextInput
           style={styles.input}
           multiline={true}
-          placeholder="Insira a informação aqui "
+          placeholder="Insira a informação aqui"
           value={additionalInfo}
           onChangeText={additionalInfo => setAdditionalInfo(additionalInfo)}
         />

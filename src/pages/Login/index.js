@@ -45,6 +45,7 @@ export default function Login({navigation}) {
               <TextInput
                 style={styles.input}
                 placeholder="E-mail"
+                keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={props.handleChange('email')}
                 value={props.values.email}
