@@ -10,6 +10,57 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    width: 330,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  buttonModalView: {
+    marginTop: 20,
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buttonModal: {
+    minHeight: 60,
+    minWidth: 80,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    justifyContent: 'center',
+  },
+  buttonOk: {
+    backgroundColor: '#2F4D90',
+  },
+  buttonCancel: {
+    backgroundColor: '#D10E0E',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   header: {
     marginTop: 20,
     marginLeft: 25,
@@ -43,6 +94,17 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     marginTop: 80,
     alignItems: 'center',
+  },
+  input: {
+    fontSize: 16,
+    height: 65,
+    backgroundColor: '#E9F5F5',
+    alignSelf: 'stretch',
+    borderColor: '#21376F',
+    borderRadius: 15,
+    borderWidth: 2,
+    paddingHorizontal: 20,
+    marginBottom: 5,
   },
   imageContainer: {
     flex: 1,

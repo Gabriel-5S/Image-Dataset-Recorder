@@ -15,8 +15,11 @@ import storage from '@react-native-firebase/storage';
 import RadioGroup from 'react-native-radio-buttons-group';
 import ImageEditor from '@react-native-community/image-editor';
 import {ActivityIndicator} from 'react-native';
+import ModalInput from './modal';
 
 export default function Classificar({route, navigation}) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [additionalInfo, setAdditionalInfo] = useState('');
   const {image, name} = route.params;
   const [cropURI, setCropURI] = useState();
 
@@ -97,6 +100,7 @@ export default function Classificar({route, navigation}) {
         customMetadata: {
           classe: selectedValue,
           autor: name,
+          'informação adicional': additionalInfo,
         },
       };
 
@@ -147,7 +151,12 @@ export default function Classificar({route, navigation}) {
       <View style={styles.uploadContainer}>
         {/*Verifica se está fazendo o upload e renderiza ou o botão ou o ActivityIndicator*/}
         {uploading ? (
-          <TouchableOpacity style={styles.buttonSave} onPress={uploadImage}>
+          <TouchableOpacity
+            style={styles.buttonSave}
+            onPress={() => {
+              uploadImage;
+              setModalVisible(true);
+            }}>
             <Text style={styles.buttonText}>Salvar</Text>
           </TouchableOpacity>
         ) : (
@@ -164,6 +173,12 @@ export default function Classificar({route, navigation}) {
           </>
         )}
       </View>
+      <ModalInput
+        setModalVisible={setModalVisible}
+        modalVisible={modalVisible}
+        additionalInfo={additionalInfo}
+        setAdditionalInfo={setAdditionalInfo}
+      />
     </SafeAreaView>
   );
 }
