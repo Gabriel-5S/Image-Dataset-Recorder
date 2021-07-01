@@ -151,14 +151,22 @@ export default function Classificar({route, navigation}) {
       <View style={styles.uploadContainer}>
         {/*Verifica se está fazendo o upload e renderiza ou o botão ou o ActivityIndicator*/}
         {uploading ? (
-          <TouchableOpacity
-            style={styles.buttonSave}
-            onPress={() => {
-              uploadImage;
-              setModalVisible(true);
-            }}>
-            <Text style={styles.buttonText}>Salvar</Text>
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity
+              style={styles.buttonAddInfo}
+              onPress={() => {
+                setModalVisible(true);
+              }}>
+              <Text style={styles.buttonText2}>Adicionar informação</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonSave}
+              onPress={() => {
+                uploadImage();
+              }}>
+              <Text style={styles.buttonText}>Salvar</Text>
+            </TouchableOpacity>
+          </>
         ) : (
           <>
             <ActivityIndicator size={35} color="#2F4D90" />

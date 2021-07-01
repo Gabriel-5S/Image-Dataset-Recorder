@@ -8,6 +8,7 @@ const ModalInput = ({
   modalVisible,
   additionalInfo,
   setAdditionalInfo,
+  uploadImage,
 }) => (
   <Modal
     animationType="slide"
@@ -21,11 +22,12 @@ const ModalInput = ({
     }}>
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
-        <Text style={styles.modalText}>Deseja adicionar uma unidade?</Text>
+        <Text style={styles.modalText}>Deseja adicionar outra informação?</Text>
 
         <TextInput
           style={styles.input}
-          placeholder="Insira a informação adicional"
+          multiline={true}
+          placeholder="Insira a informação aqui "
           value={additionalInfo}
           onChangeText={additionalInfo => setAdditionalInfo(additionalInfo)}
         />
@@ -37,7 +39,7 @@ const ModalInput = ({
               setModalVisible(!modalVisible);
               setAdditionalInfo('');
             }}>
-            <Text style={styles.textStyle}>Cancelar</Text>
+            <Text style={styles.textStyle}>Não</Text>
           </Pressable>
           <Pressable
             style={[styles.buttonModal, styles.buttonOk]}
