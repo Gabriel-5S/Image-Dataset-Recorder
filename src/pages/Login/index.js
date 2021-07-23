@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
@@ -27,7 +28,8 @@ const reviewSchema = yup.object({
 });
 
 export default function Login({navigation}) {
-  const {login} = useContext(AuthContext);
+  const {user, login} = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <View style={styles.container1}>
@@ -36,9 +38,10 @@ export default function Login({navigation}) {
         <Formik
           initialValues={{email: '', password: ''}}
           validationSchema={reviewSchema}
-          onSubmit={(values, actions) => {
+          onSubmit={async (values, actions) => {
+            setIsLoading(true);
             actions.resetForm();
-            login(values.email, values.password);
+            await login(values.email, values.password);
           }}>
           {props => (
             <View style={styles.container2}>
@@ -85,7 +88,15 @@ export default function Login({navigation}) {
               <TouchableOpacity
                 style={styles.loginButton}
                 onPress={props.handleSubmit}>
-                <Text style={styles.loginButtonText}>Entrar</Text>
+                {isLoading ? (
+                  <>
+                    <ActivityIndicator size={35} color="#FFF" />
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.loginButtonText}>Entrar</Text>
+                  </>
+                )}
               </TouchableOpacity>
             </View>
           )}
