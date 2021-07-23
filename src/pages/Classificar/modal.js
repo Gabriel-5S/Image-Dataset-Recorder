@@ -1,4 +1,11 @@
-import {Alert, Pressable, Text, TextInput, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import styles from './styles';
 import React from 'react';
 import Modal from 'react-native-modal';
@@ -39,7 +46,11 @@ const ModalInput = ({
               setModalVisible(!modalVisible);
               setAdditionalInfo('');
             }}>
-            <Text style={styles.textStyle}>Não</Text>
+            {additionalInfo != '' ? (
+              <Text style={styles.textStyle}>Descartar</Text>
+            ) : (
+              <Text style={styles.textStyle}>Não</Text>
+            )}
           </Pressable>
           <Pressable
             style={[styles.buttonModal, styles.buttonOk]}

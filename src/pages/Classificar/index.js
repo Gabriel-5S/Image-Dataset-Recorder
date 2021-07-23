@@ -6,11 +6,11 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  FlatList,
   SafeAreaView,
   Alert,
 } from 'react-native';
 import categories from './categories';
+import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import RadioGroup from 'react-native-radio-buttons-group';
 import ImageEditor from '@react-native-community/image-editor';
@@ -98,9 +98,8 @@ export default function Classificar({route, navigation}) {
 
       const metadata = {
         customMetadata: {
-          classe: selectedValue,
+          class: selectedValue,
           autor: name,
-          'informação adicional': additionalInfo,
         },
       };
 
@@ -120,6 +119,7 @@ export default function Classificar({route, navigation}) {
             onPress: () => {},
           },
         ]);
+        uploadData();
         navigation.navigate('Home');
       });
     } else {
@@ -130,6 +130,48 @@ export default function Classificar({route, navigation}) {
         },
       ]);
     }
+  };
+
+  const uploadData = async () => {
+    //Função que incrementará o contador de cada classificação cada vez que for chamado
+    const increment = firestore.FieldValue.increment(1);
+
+    //Faz o upload no banco com os dados e a contagem
+    const globalCounter = await firestore()
+      .collection('global')
+      .doc('--globalCounter--');
+
+    //Contador para cada classe
+    const counter = await firestore()
+      .collection(selectedValue)
+      .doc('--counter--');
+
+    //Referência para a coleção de cada classe
+    const register = await firestore()
+      .collection(selectedValue)
+      .doc(image.fileName); //Colocando o nome do documento igual ao da imagem
+
+    const reference = storage().ref(selectedValue + '/' + image.fileName);
+    // const storageReference = reference.fullPath;
+    const url = await reference.getDownloadURL();
+
+    //Permite múltiplas inserções em seguida, que falharão ou terão sucesso juntas
+    const batch = firestore().batch();
+    batch.set(register, {
+      autor: name,
+      class: selectedValue,
+      additionalInfo: additionalInfo,
+      path: selectedValue + '/' + image.fileName,
+      downloadURL: url,
+      createdAt: firestore.Timestamp.fromDate(new Date()),
+    });
+    batch.set(counter, {count: increment}, {merge: true});
+    batch.set(
+      globalCounter,
+      {Global: increment, [selectedValue]: increment},
+      {merge: true},
+    );
+    batch.commit();
   };
 
   return (
@@ -157,7 +199,11 @@ export default function Classificar({route, navigation}) {
               onPress={() => {
                 setModalVisible(true);
               }}>
-              <Text style={styles.buttonText2}>Adicionar informação</Text>
+              {additionalInfo ? (
+                <Text style={styles.buttonText2}>Editar informação</Text>
+              ) : (
+                <Text style={styles.buttonText2}>Adicionar informação</Text>
+              )}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonSave}
