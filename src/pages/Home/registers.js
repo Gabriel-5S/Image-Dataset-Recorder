@@ -5,9 +5,9 @@ import React, {useState, useEffect} from 'react';
 import {PieChart} from 'react-native-svg-charts';
 
 export default _ => {
-  const [positiveCount, setPositiveCount] = useState(0);
-  const [negativeCount, setNegativeCount] = useState(0);
-  const [uncertainCount, setUncertainCount] = useState(0);
+  const [classACount, setClassACount] = useState(0);
+  const [classBCount, setClassBCount] = useState(0);
+  const [classCCount, setClassCCount] = useState(0);
   const [globalCount, setGlobalCount] = useState(0);
 
   const counter = async () => {
@@ -21,9 +21,9 @@ export default _ => {
               console.log('No such document!');
             } else {
               setGlobalCount(documentSnapshot.data().Global);
-              setNegativeCount(documentSnapshot.data().Negativo);
-              setUncertainCount(documentSnapshot.data().Incerto);
-              setPositiveCount(documentSnapshot.data().Positivo);
+              setClassACount(documentSnapshot.data()['Class A']);
+              setClassBCount(documentSnapshot.data()['Class B']);
+              setClassCCount(documentSnapshot.data()['Class C']);
             }
           } catch (e) {
             console.log(e);
@@ -43,36 +43,26 @@ export default _ => {
   const registers = [
     {
       id: 1,
-      icon: 'check',
+      icon: 'circle',
       color: '#0f9a00',
-      name: 'Positivo',
-      count: positiveCount,
+      name: 'Class A',
+      count: classACount,
     },
     {
       id: 2,
-      icon: 'close',
+      icon: 'circle',
       color: '#a01414',
-      name: 'Negativo',
-      count: negativeCount,
+      name: 'Class B',
+      count: classBCount,
     },
     {
       id: 3,
-      icon: 'question-circle',
+      icon: 'circle',
       color: '#cb9c00',
-      name: 'Incerto',
-      count: uncertainCount,
+      name: 'Class C',
+      count: classCCount,
     },
-    // {id: 4, icon: 'globe', color: '#2F4D90', name: 'Total', count: globalCount},
   ];
-
-  // const renderItem = ({item}) => (
-  //   <View style={style.classContainer}>
-  //     <Icon name={item.icon} size={30} color={item.color} />
-  //     <Text style={style.text}>
-  //       {item.name}: {item.count}
-  //     </Text>
-  //   </View>
-  // );
 
   const renderIcons = ({item}) => (
     <View style={style.iconsContainer}>
@@ -89,9 +79,9 @@ export default _ => {
   );
 
   const data = [
-    {key: 1, amount: positiveCount, svg: {fill: '#0f9a00'}},
-    {key: 2, amount: negativeCount, svg: {fill: '#B22222'}},
-    {key: 3, amount: uncertainCount, svg: {fill: '#d7a713'}},
+    {key: 1, amount: classACount, svg: {fill: '#0f9a00'}},
+    {key: 2, amount: classBCount, svg: {fill: '#B22222'}},
+    {key: 3, amount: classCCount, svg: {fill: '#d7a713'}},
   ];
 
   return (
@@ -105,14 +95,6 @@ export default _ => {
         />
         <Text style={style.centralText}>Total: {globalCount}</Text>
       </View>
-
-      {/*<View style={style.flatListContainer}>*/}
-      {/*  <FlatList*/}
-      {/*    data={registers}*/}
-      {/*    renderItem={renderItem}*/}
-      {/*    keyExtractor={item => item.id}*/}
-      {/*  />*/}
-      {/*</View>*/}
       <View style={{flex: 1, marginBottom: 10}}>
         <View style={{flex: 1, marginBottom: 55}}>
           <PieChart

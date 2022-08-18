@@ -16,10 +16,7 @@ import * as yup from 'yup';
 import firestore from '@react-native-firebase/firestore';
 
 const reviewSchema = yup.object({
-  email: yup
-    .string()
-    .email('Digite um e-mail válido')
-    .required('Preencha o campo de e-mail'),
+  email: yup.string().email('Enter a valid email').required('Enter an email'),
 });
 
 export default function Login({navigation}) {
@@ -29,7 +26,7 @@ export default function Login({navigation}) {
     <View style={styles.container1}>
       <ScrollView>
         <Text style={styles.header}>
-          Digite seu email, para enviarmos um link de redefinição de senha.
+          Enter your email, and we will send you a link to reset your password.
         </Text>
         <Formik
           initialValues={{email: ''}}
@@ -42,7 +39,7 @@ export default function Login({navigation}) {
             <View style={styles.container2}>
               <TextInput
                 style={styles.input}
-                placeholder="E-mail"
+                placeholder="Email"
                 autoCapitalize="none"
                 onChangeText={props.handleChange('email')}
                 value={props.values.email}
@@ -55,7 +52,7 @@ export default function Login({navigation}) {
               <TouchableOpacity
                 style={styles.loginButton}
                 onPress={props.handleSubmit}>
-                <Text style={styles.loginButtonText}>Enviar email</Text>
+                <Text style={styles.loginButtonText}>Send email</Text>
               </TouchableOpacity>
             </View>
           )}

@@ -19,12 +19,9 @@ import firestore from '@react-native-firebase/firestore';
 const reviewSchema = yup.object({
   password: yup
     .string()
-    .min(6, 'A senha deve ter no mínimo 6 caracteres')
-    .required('Preencha o campo de senha'),
-  email: yup
-    .string()
-    .email('Digite um e-mail válido')
-    .required('Preencha o campo de e-mail'),
+    .min(6, 'The password must have at least 6 characters')
+    .required('Enter a password'),
+  email: yup.string().email('Enter a valid email').required('Enter an email'),
 });
 
 export default function Login({navigation}) {
@@ -34,7 +31,7 @@ export default function Login({navigation}) {
   return (
     <View style={styles.container1}>
       <ScrollView>
-        <Text style={styles.header}>Bem-vindo!</Text>
+        <Text style={styles.header}>Welcome!</Text>
         <Formik
           initialValues={{email: '', password: ''}}
           validationSchema={reviewSchema}
@@ -47,7 +44,7 @@ export default function Login({navigation}) {
             <View style={styles.container2}>
               <TextInput
                 style={styles.input}
-                placeholder="E-mail"
+                placeholder="Email"
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={props.handleChange('email')}
@@ -60,7 +57,7 @@ export default function Login({navigation}) {
 
               <TextInput
                 style={styles.input}
-                placeholder="Senha"
+                placeholder="Password"
                 secureTextEntry={true}
                 autoCapitalize="none"
                 onChangeText={props.handleChange('password')}
@@ -75,13 +72,13 @@ export default function Login({navigation}) {
                 <TouchableOpacity
                   style={styles.signupButton}
                   onPress={() => navigation.navigate('SignUp')}>
-                  <Text style={styles.signupButtonText}>Criar conta</Text>
+                  <Text style={styles.signupButtonText}>Sign up</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   style={styles.forgotButton}
                   onPress={() => navigation.navigate('ResetPassword')}>
-                  <Text style={styles.forgotButtonText}>Esqueceu a senha?</Text>
+                  <Text style={styles.forgotButtonText}>Forgot password?</Text>
                 </TouchableOpacity>
               </View>
 
@@ -94,7 +91,7 @@ export default function Login({navigation}) {
                   </>
                 ) : (
                   <>
-                    <Text style={styles.loginButtonText}>Entrar</Text>
+                    <Text style={styles.loginButtonText}>Log in</Text>
                   </>
                 )}
               </TouchableOpacity>

@@ -113,7 +113,7 @@ export default function Classificar({route, navigation}) {
         );
       });
       task.then(() => {
-        Alert.alert('Sucesso!', 'Upload feito com sucesso!', [
+        Alert.alert('Success!', 'Uploaded successfully!', [
           {
             text: 'OK',
             onPress: () => {},
@@ -123,7 +123,7 @@ export default function Classificar({route, navigation}) {
         navigation.navigate('Home');
       });
     } else {
-      Alert.alert('', 'Selecione uma das classes!', [
+      Alert.alert('', 'Select one of the classes!', [
         {
           text: 'OK',
           onPress: () => {},
@@ -176,7 +176,7 @@ export default function Classificar({route, navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Classificar a imagem:</Text>
+      <Text style={styles.header}>Image classification:</Text>
 
       <View style={styles.imageContainer}>
         <Image source={{uri: cropURI}} style={styles.image} />
@@ -200,9 +200,9 @@ export default function Classificar({route, navigation}) {
                 setModalVisible(true);
               }}>
               {additionalInfo ? (
-                <Text style={styles.buttonText2}>Editar informação</Text>
+                <Text style={styles.buttonText2}>Edit info</Text>
               ) : (
-                <Text style={styles.buttonText2}>Adicionar informação</Text>
+                <Text style={styles.buttonText2}>Add info</Text>
               )}
             </TouchableOpacity>
             <TouchableOpacity
@@ -210,7 +210,7 @@ export default function Classificar({route, navigation}) {
               onPress={() => {
                 uploadImage();
               }}>
-              <Text style={styles.buttonText}>Salvar</Text>
+              <Text style={styles.buttonText}>Save</Text>
             </TouchableOpacity>
           </>
         ) : (

@@ -29,12 +29,14 @@ const ModalInput = ({
     }}>
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
-        <Text style={styles.modalText}>Deseja adicionar outra informação?</Text>
+        <Text style={styles.modalText}>
+          Do you want to add another information?
+        </Text>
 
         <TextInput
           style={styles.input}
           multiline={true}
-          placeholder="Insira a informação aqui"
+          placeholder="Insert info here"
           value={additionalInfo}
           onChangeText={additionalInfo => setAdditionalInfo(additionalInfo)}
         />
@@ -47,9 +49,9 @@ const ModalInput = ({
               setAdditionalInfo('');
             }}>
             {additionalInfo != '' ? (
-              <Text style={styles.textStyle}>Descartar</Text>
+              <Text style={styles.textStyle}>Discard</Text>
             ) : (
-              <Text style={styles.textStyle}>Não</Text>
+              <Text style={styles.textStyle}>No</Text>
             )}
           </Pressable>
           <Pressable
@@ -57,7 +59,7 @@ const ModalInput = ({
             onPress={() => {
               setModalVisible(!modalVisible);
             }}>
-            <Text style={styles.textStyle}>Adicionar</Text>
+            <Text style={styles.textStyle}>Add</Text>
           </Pressable>
         </View>
       </View>

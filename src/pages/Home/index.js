@@ -69,7 +69,7 @@ export default function Home({navigation}) {
       style={styles.linearGradient}>
       <SafeAreaView style={styles.container1}>
         <View style={styles.containerText}>
-          <Text style={styles.header}>Olá, {name}!</Text>
+          <Text style={styles.header}>Hello, {name}!</Text>
         </View>
         <Registers />
         <View style={styles.buttonContainer}>

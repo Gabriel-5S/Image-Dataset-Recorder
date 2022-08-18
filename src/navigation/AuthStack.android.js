@@ -32,7 +32,7 @@ const AuthStack: () => React$Node = () => {
         name="ResetPassword"
         component={ResetPassword}
         options={{
-          headerTitle: 'Esqueceu sua senha?',
+          headerTitle: 'Forgot password?',
           headerTitleAlign: 'center',
           headerTitleStyle: {fontSize: 24},
         }}
