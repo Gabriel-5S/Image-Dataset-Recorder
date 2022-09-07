@@ -146,6 +146,12 @@ android {
         }
     }
     signingConfigs {
+     release {
+          storeFile file('dataset_key.keystore')
+          storePassword 'nibsdecacau'
+          keyAlias 'dataset-exames'
+          keyPassword 'nibsdecacau'
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'

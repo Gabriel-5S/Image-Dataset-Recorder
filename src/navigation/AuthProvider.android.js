@@ -18,21 +18,17 @@ export const AuthProvider = ({children}) => {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (error) {
             if (error.code === 'auth/user-not-found') {
-              Alert.alert(
-                'Ops!',
-                'Não há usuário correspondente a esse email.',
-                [{text: 'OK', onPress: () => {}}],
-              );
+              Alert.alert('Ops!', 'There is no user matching this email.', [
+                {text: 'OK', onPress: () => {}},
+              ]);
             } else if (error.code === 'auth/wrong-password') {
-              Alert.alert('Ops!', 'Senha incorreta!', [
+              Alert.alert('Ops!', 'Wrong password!', [
                 {text: 'OK', onPress: () => {}},
               ]);
             } else {
-              Alert.alert(
-                'Ops!',
-                'Ocorreu um erro! Por favor, tente novamente',
-                [{text: 'OK', onPress: () => {}}],
-              );
+              Alert.alert('Ops!', 'An error has occurred! Please try again', [
+                {text: 'OK', onPress: () => {}},
+              ]);
             }
           }
         },
@@ -64,19 +60,19 @@ export const AuthProvider = ({children}) => {
                 if (error.code === 'auth/email-already-in-use') {
                   Alert.alert(
                     'Ops!',
-                    'Esse email já está sendo usado. Por favor, utilize outro email.',
+                    'This email is already in use. Please use another email.',
                     [{text: 'OK', onPress: () => {}}],
                   );
                 } else if (error.code === 'auth/invalid-email') {
                   Alert.alert(
                     'Ops!',
-                    'Esse email é inválido! Por favor, tente novamente.',
+                    'This email is invalid! Please try again.',
                     [{text: 'OK', onPress: () => {}}],
                   );
                 } else {
                   Alert.alert(
                     'Ops!',
-                    'Ocorreu um erro! Por favor, tente novamente',
+                    'An error has occurred! Please try again',
                     [{text: 'OK', onPress: () => {}}],
                   );
                 }
@@ -97,23 +93,17 @@ export const AuthProvider = ({children}) => {
             await auth().sendPasswordResetEmail(email);
           } catch (error) {
             if (error.code === 'auth/user-not-found') {
-              Alert.alert(
-                'Ops!',
-                'Não há usuário correspondente a esse email.',
-                [{text: 'OK', onPress: () => {}}],
-              );
+              Alert.alert('Ops!', 'There is no user matching this email.', [
+                {text: 'OK', onPress: () => {}},
+              ]);
             } else if (error.code === 'auth/invalid-email') {
-              Alert.alert(
-                'Ops!',
-                'Esse email é inválido! Por favor, tente novamente.',
-                [{text: 'OK', onPress: () => {}}],
-              );
+              Alert.alert('Ops!', 'This email is invalid! Please try again.', [
+                {text: 'OK', onPress: () => {}},
+              ]);
             } else {
-              Alert.alert(
-                'Ops!',
-                'Ocorreu um erro! Por favor, tente novamente',
-                [{text: 'OK', onPress: () => {}}],
-              );
+              Alert.alert('Ops!', 'An error has occurred! Please try again', [
+                {text: 'OK', onPress: () => {}},
+              ]);
             }
           }
         },

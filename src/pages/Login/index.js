@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
@@ -18,33 +19,34 @@ import firestore from '@react-native-firebase/firestore';
 const reviewSchema = yup.object({
   password: yup
     .string()
-    .min(6, 'A senha deve ter no mínimo 6 caracteres')
-    .required('Preencha o campo de senha'),
-  email: yup
-    .string()
-    .email('Digite um e-mail válido')
-    .required('Preencha o campo de e-mail'),
+    .min(6, 'The password must have at least 6 characters')
+    .required('Enter a password'),
+  email: yup.string().email('Enter a valid email').required('Enter an email'),
 });
 
 export default function Login({navigation}) {
-  const {login} = useContext(AuthContext);
+  const {user, login} = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <View style={styles.container1}>
       <ScrollView>
-        <Text style={styles.header}>Bem-vindo!</Text>
+        <Text style={styles.header}>Welcome!</Text>
         <Formik
           initialValues={{email: '', password: ''}}
           validationSchema={reviewSchema}
-          onSubmit={(values, actions) => {
+          onSubmit={async (values, actions) => {
+            setIsLoading(true);
             actions.resetForm();
-            login(values.email, values.password);
+            await login(values.email, values.password);
           }}>
           {props => (
             <View style={styles.container2}>
               <TextInput
                 style={styles.input}
-                placeholder="E-mail"
+                placeholder="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
                 onChangeText={props.handleChange('email')}
                 value={props.values.email}
                 onBlur={props.handleBlur('email')}
@@ -55,8 +57,9 @@ export default function Login({navigation}) {
 
               <TextInput
                 style={styles.input}
-                placeholder="Senha"
+                placeholder="Password"
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={props.handleChange('password')}
                 value={props.values.password}
                 onBlur={props.handleBlur('password')}
@@ -69,20 +72,28 @@ export default function Login({navigation}) {
                 <TouchableOpacity
                   style={styles.signupButton}
                   onPress={() => navigation.navigate('SignUp')}>
-                  <Text style={styles.signupButtonText}>Criar conta</Text>
+                  <Text style={styles.signupButtonText}>Sign up</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   style={styles.forgotButton}
                   onPress={() => navigation.navigate('ResetPassword')}>
-                  <Text style={styles.forgotButtonText}>Esqueceu a senha?</Text>
+                  <Text style={styles.forgotButtonText}>Forgot password?</Text>
                 </TouchableOpacity>
               </View>
 
               <TouchableOpacity
                 style={styles.loginButton}
                 onPress={props.handleSubmit}>
-                <Text style={styles.loginButtonText}>Entrar</Text>
+                {isLoading ? (
+                  <>
+                    <ActivityIndicator size={35} color="#FFF" />
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.loginButtonText}>Log in</Text>
+                  </>
+                )}
               </TouchableOpacity>
             </View>
           )}

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 10,
-    marginBottom: 70,
+    marginBottom: 25,
     marginLeft: 25,
   },
   header: {
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    flex: 1,
+    // flex: 1,
+    marginBottom: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },

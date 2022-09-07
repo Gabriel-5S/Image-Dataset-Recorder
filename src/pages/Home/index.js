@@ -3,11 +3,11 @@ import React, {useContext, useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import styles from './styles';
 import {AuthContext} from '../../navigation/AuthProvider';
-import {SafeAreaView, View, Image, Text, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-
 import {launchCamera} from 'react-native-image-picker';
+import Registers from './registers';
 
 export default function Home({navigation}) {
   const {user, logout} = useContext(AuthContext);
@@ -45,13 +45,18 @@ export default function Home({navigation}) {
     launchCamera(
       {
         title: 'Escolha a imagem',
-        maxHeight: 900,
-        maxWidth: 600,
+        saveToPhotos: false,
       },
       res => {
         if (!res.didCancel) {
           navigation.navigate('Classificar', {
-            image: {uri: res.uri, base64: res.base64},
+            image: {
+              uri: res.uri,
+              fileName: res.fileName,
+              height: res.height,
+              width: res.width,
+            },
+            name: name,
           });
         }
       },
@@ -64,8 +69,9 @@ export default function Home({navigation}) {
       style={styles.linearGradient}>
       <SafeAreaView style={styles.container1}>
         <View style={styles.containerText}>
-          <Text style={styles.header}>Olá, {name}!</Text>
+          <Text style={styles.header}>Hello, {name}!</Text>
         </View>
+        <Registers />
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={pickImage}>
             <Icon name="camera" size={25} color={'#FFFFFF'} />

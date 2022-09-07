@@ -34,7 +34,7 @@ const AppStack: () => React$Node = () => {
         name="Classificar"
         component={Classificar}
         options={{
-          headerTitle: 'Classificar',
+          headerTitle: 'Classification',
           headerTitleAlign: 'center',
           headerTitleStyle: {fontSize: 24},
         }}

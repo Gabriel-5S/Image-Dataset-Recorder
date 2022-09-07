@@ -15,15 +15,12 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 
 const reviewSchema = yup.object({
-  name: yup.string().required('Preencha o campo do nome'),
+  name: yup.string().required('Enter a name'),
   password: yup
     .string()
-    .min(6, 'A senha deve ter no mínimo 6 caracteres')
-    .required('Preencha o campo de senha'),
-  email: yup
-    .string()
-    .email('Digite um e-mail válido')
-    .required('Preencha o campo de e-mail'),
+    .min(6, 'The password must have at least 6 characters')
+    .required('Enter a password'),
+  email: yup.string().email('Enter a valid email').required('Enter an email'),
 });
 
 export default function SignUp({navigation}) {
@@ -32,7 +29,7 @@ export default function SignUp({navigation}) {
   return (
     <View style={styles.container1}>
       <ScrollView>
-        <Text style={styles.header}>Crie sua conta</Text>
+        <Text style={styles.header}>Create account</Text>
         <Formik
           initialValues={{name: '', email: '', password: ''}}
           validationSchema={reviewSchema}
@@ -44,7 +41,7 @@ export default function SignUp({navigation}) {
             <View style={styles.container2}>
               <TextInput
                 style={styles.input}
-                placeholder="Nome"
+                placeholder="Name"
                 onChangeText={props.handleChange('name')}
                 value={props.values.name}
                 onBlur={props.handleBlur('name')}
@@ -55,7 +52,8 @@ export default function SignUp({navigation}) {
 
               <TextInput
                 style={styles.input}
-                placeholder="E-mail"
+                placeholder="Email"
+                autoCapitalize="none"
                 onChangeText={props.handleChange('email')}
                 value={props.values.email}
                 onBlur={props.handleBlur('email')}
@@ -66,7 +64,7 @@ export default function SignUp({navigation}) {
 
               <TextInput
                 style={styles.input}
-                placeholder="Senha"
+                placeholder="Password"
                 secureTextEntry={true}
                 onChangeText={props.handleChange('password')}
                 value={props.values.password}
@@ -79,14 +77,14 @@ export default function SignUp({navigation}) {
               <TouchableOpacity
                 style={styles.signUpButton}
                 onPress={props.handleSubmit}>
-                <Text style={styles.signUpButtonText}>Criar conta</Text>
+                <Text style={styles.signUpButtonText}>Sign Up</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={styles.backToLoginButton}
                 onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.backToLoginButtonText}>
-                  Já possui uma conta? Fazer login
+                  Already have an account? Sign In
                 </Text>
               </TouchableOpacity>
             </View>
